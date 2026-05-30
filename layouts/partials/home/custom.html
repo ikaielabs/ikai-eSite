@@ -1,0 +1,114 @@
+{{/* Hero */}}
+<hr>
+<div class="mb-12 text-center">
+  <h1 style="font-size: 2.5rem; font-weight: 500; margin-bottom: 0.75rem; margin-top: 2rem;">Ikai eLabs</h1>
+  <p class="text-neutral-500 max-w-sm mx-auto leading-relaxed" style="margin-bottom: 2rem;">
+    Compact add-on boards and open-source projects for makers and hobbyists.
+  </p>
+  <div class="flex gap-3 justify-center">
+    <a href="/eBoards/" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100
+       text-white dark:text-neutral-900 rounded-lg text-sm">
+      Browse products →
+    </a>
+    <a href="/eBlogs/" class="px-4 py-2 border border-neutral-200
+       dark:border-neutral-700 rounded-lg text-sm text-neutral-500">
+      Read the blog
+    </a>
+  </div>
+</div>
+
+{{/* Products */}}
+<section class="mb-10">
+  <p class="text-xs uppercase tracking-widest text-neutral-400 mb-1">Products</p>
+  <h2 class="text-lg font-medium mb-1">Add-on boards</h2>
+  <p class="text-sm text-neutral-500 mb-4">Hardware you can drop into your project today.</p>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+    {{ range first 3 (where .Site.RegularPages "Section" "eBoards") }}
+    <a href="{{ .Permalink }}"
+       class="block border border-neutral-200 dark:border-neutral-700
+              rounded-xl p-4 hover:border-neutral-400 transition-colors">
+      <p class="text-sm font-medium mb-1">{{ .Title }}</p>
+      <p class="text-xs text-neutral-400 mb-2">
+        {{ .Params.mcu }} · {{ .Params.interface }} · {{ .Params.voltage }}
+      </p>
+      <p class="text-xs text-neutral-500">{{ .Summary }}</p>
+    </a>
+    {{ end }}
+  </div>
+  <div class="text-right mt-3">
+    <a href="/eBoards/" class="text-xs text-neutral-400 hover:text-neutral-700">
+      All products →
+    </a>
+  </div>
+</section>
+<hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
+
+{{/* About strip */}}
+<section class="mb-10">
+  <p class="text-xs uppercase tracking-widest text-neutral-400 mb-3">About</p>
+  <div class="bg-neutral-50 dark:bg-neutral-800 rounded-xl p-5 flex gap-6 flex-wrap">
+    <p class="text-sm text-neutral-500 leading-relaxed flex-1 min-w-48">
+      ikaielabs builds open-source add-on boards and shares the process —
+      schematics, firmware, and lessons learned.
+    </p>
+    <div class="flex gap-3">
+      {{ $eBoards := len (where .Site.RegularPages "Section" "eBoards") }}
+      {{ $eTutorials := len (where .Site.RegularPages "Section" "eTutorials") }}
+      <div class="text-center bg-white dark:bg-neutral-900 rounded-lg
+                  border border-neutral-200 dark:border-neutral-700 px-4 py-3">
+        <p class="text-xl font-medium">{{ $eBoards }}</p>
+        <p class="text-xs text-neutral-400">Boards</p>
+      </div>
+      <div class="text-center bg-white dark:bg-neutral-900 rounded-lg
+                  border border-neutral-200 dark:border-neutral-700 px-4 py-3">
+        <p class="text-xl font-medium">{{ $eTutorials }}</p>
+        <p class="text-xs text-neutral-400">Tutorials</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
+
+{{/* Recent blog posts */}}
+<section class="mb-10">
+  <p class="text-xs uppercase tracking-widest text-neutral-400 mb-1">Recent</p>
+  <h2 class="text-lg font-medium mb-4">From the blog</h2>
+  {{ range first 3 (where .Site.RegularPages "Section" "eBlogs") }}
+  <a href="{{ .Permalink }}"
+     class="flex items-baseline justify-between py-3
+            border-b border-neutral-100 dark:border-neutral-800
+            hover:text-neutral-900 group">
+    <span class="text-sm font-medium text-neutral-500 group-hover:text-neutral-900
+                 flex-1 transition-colors">
+      {{ .Title }}
+    </span>
+    <span class="text-xs text-neutral-400 ml-4 whitespace-nowrap">
+      {{ .Date.Format "Jan 2006" }}
+    </span>
+  </a>
+  {{ end }}
+  <div class="text-right mt-3">
+    <a href="/eBlogs/" class="text-xs text-neutral-400 hover:text-neutral-700">
+      All posts →
+    </a>
+  </div>
+</section>
+<hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
+
+{{/* Now building */}}
+{{ with .Site.GetPage "/now" }}
+<section class="mb-4">
+  <p class="text-xs uppercase tracking-widest text-neutral-400 mb-3">Now building</p>
+  <a href="{{ .Permalink }}"
+     class="flex items-center gap-4 border border-neutral-200
+            dark:border-neutral-700 rounded-xl p-4 hover:border-neutral-400 transition-colors">
+    <span class="text-2xl text-neutral-400">⚙</span>
+    <div class="flex-1">
+      <p class="text-sm font-medium mb-0.5">{{ .Title }}</p>
+      <p class="text-xs text-neutral-500">{{ .Params.status }}</p>
+    </div>
+    <span class="text-neutral-400 text-sm">→</span>
+  </a>
+</section>
+<hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
+{{ end }}

@@ -1,0 +1,11 @@
+/* Navbar site title text */
+header a[href="/"].text-base {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+}
+
+header .logo {
+  max-height: 36px !important;
+  max-width: 140px !important;
+}
