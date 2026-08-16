@@ -1,5 +1,5 @@
 ---
-title: "DAC prototype"
+title: "Ethernet"
 params:
-  status: "Schematic done, routing in progress."
+  status: "Research in progress."
 ---

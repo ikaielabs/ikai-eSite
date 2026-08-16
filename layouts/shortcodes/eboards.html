@@ -1,0 +1,120 @@
+{{/*
+Shortcode: eboards
+Renders a responsive 2x2 grid of boards with click-to-reveal modals.
+Reads boards from page frontmatter: `boards` (array of objects with id, title, tagline, description, specs, members, links)
+*/}}
+<section class="max-w-6xl mx-auto px-4 py-8">
+  {{ $pages := .Page.Pages }}
+  {{ $annex := where $pages "Params.group" "eq" "annex" }}
+  {{ $other := where $pages "Params.group" "ne" "annex" }}
+  {{/* Overview: two large tiles */}}
+  <div id="eboards-overview" class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+    <button type="button" data-target="annex" class="group block rounded-3xl overflow-hidden shadow-2xl transform hover:-translate-y-1 transition bg-gradient-to-br from-sky-50 to-white dark:from-slate-900 dark:to-slate-800 ring-1 ring-slate-100 dark:ring-slate-700 p-8 text-left">
+      <div class="flex items-center gap-6">
+        <div class="w-24 h-24 rounded-xl bg-sky-100 dark:bg-slate-700 flex items-center justify-center text-2xl font-bold text-sky-700 dark:text-white">A</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Annex Boards</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Compact add-on boards for makers and hobbyists.</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" data-target="other" class="group block rounded-3xl overflow-hidden shadow-2xl transform hover:-translate-y-1 transition bg-gradient-to-br from-amber-50 to-white dark:from-slate-900 dark:to-slate-800 ring-1 ring-slate-100 dark:ring-slate-700 p-8 text-left">
+      <div class="flex items-center gap-6">
+        <div class="w-24 h-24 rounded-xl bg-amber-100 dark:bg-slate-700 flex items-center justify-center text-2xl font-bold text-amber-700 dark:text-white">O</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Other Boards</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Miscellaneous projects and other boards.</p>
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <div id="annex" class="eboards-panel hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {{ range $i, $p := $annex }}
+        <a href="{{ $p.RelPermalink }}" class="group block rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 hover:scale-101 transition focus:outline-none bg-gradient-to-br from-white/60 to-slate-50 dark:from-slate-900/60 dark:to-slate-800/60 ring-1 ring-slate-100 dark:ring-slate-700">
+          <div class="aspect-[4/3] relative">
+            {{ $imgPath := $p.Params.image }}
+            {{ if $imgPath }}
+              {{ with resources.Get $imgPath }}
+                <div class="w-full h-full p-4 flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+                  <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="max-w-full max-h-full object-contain rounded-lg nozoom" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" aria-hidden="true"></div>
+              {{ else }}
+                <div class="w-full h-full p-4 flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+                  <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="max-w-full max-h-full object-contain rounded-lg nozoom" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" aria-hidden="true"></div>
+              {{ end }}
+            {{ else }}
+              <div class="w-full h-full flex items-center justify-center p-6 bg-slate-100 dark:bg-slate-800">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ $p.Title }}</h3>
+              </div>
+            {{ end }}
+            <div class="absolute left-4 bottom-4 text-white">
+              <h4 class="text-lg font-semibold drop-shadow">{{ $p.Title }}</h4>
+              {{ with $p.Params.tagline }}<p class="text-sm opacity-90">{{ . }}</p>{{ end }}
+            </div>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+
+  <div id="other" class="eboards-panel hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="col-span-full mb-4">
+        <button type="button" data-back class="px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 ring-1 ring-slate-200 dark:ring-slate-700">← Back</button>
+      </div>
+      {{ range $i, $p := $other }}
+        <a href="{{ $p.RelPermalink }}" class="group block rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 hover:scale-101 transition focus:outline-none bg-white dark:bg-slate-900 ring-1 ring-slate-100 dark:ring-slate-700">
+          <div class="aspect-[4/3] flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+            {{ $imgPath := $p.Params.image }}
+            {{ if $imgPath }}
+              {{ $res := resources.Get $imgPath }}
+              {{ with resources.Get $imgPath }}
+                {{ $fit := .Fit "800x600" }}
+                <div class="w-full h-full p-4 flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+                  <img src="{{ $fit.RelPermalink }}" alt="{{ $p.Title }}" class="max-w-full max-h-full object-contain rounded-lg nozoom" />
+                </div>
+              {{ else }}
+                <div class="w-full h-full p-4 flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+                  <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="max-w-full max-h-full object-contain rounded-lg nozoom" />
+                </div>
+              {{ end }}
+            {{ else }}
+              <div class="p-6 text-center">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ $p.Title }}</h3>
+                {{ with $p.Params.tagline }}<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{{ . }}</p>{{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+
+  {{/* Tab toggle JS (small and accessible) */}}
+  <script>
+    (function(){
+      const overview = document.getElementById('eboards-overview');
+      const panels = document.querySelectorAll('.eboards-panel');
+      const overviewButtons = overview ? overview.querySelectorAll('button[data-target]') : [];
+      function showOverview(){
+        overview && (overview.classList.remove('hidden'));
+        panels.forEach(p=> p.classList.add('hidden'));
+      }
+      function showPanel(name){
+        overview && (overview.classList.add('hidden'));
+        panels.forEach(p=> p.classList.toggle('hidden', p.id!==name));
+      }
+      overviewButtons.forEach(b=> b.addEventListener('click', ()=> showPanel(b.getAttribute('data-target'))));
+      // back buttons
+      document.querySelectorAll('[data-back]').forEach(btn=> btn.addEventListener('click', showOverview));
+      // default view
+      showOverview();
+    })();
+  </script>
+</section>

@@ -1,3 +1,5 @@
 ---
 title: "eBoards"
 ---
+
+{{< eboards >}}

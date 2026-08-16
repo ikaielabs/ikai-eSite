@@ -260,7 +260,8 @@
 
 
   
-  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+  
+  <body class="flex flex-col min-h-screen leading-7 w-full px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
     <div id="the-top" class="absolute flex self-center">
       <a
         class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
@@ -270,8 +271,9 @@
       </a>
     </div>
     
-    
-      <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+    <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+      
+        <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
   
   
     <a href="/" class="text-base font-medium truncate min-w-0 shrink">
@@ -541,10 +543,12 @@
 
 
 
-    
-    <div class="relative flex flex-col grow">
+      
+    </div>
+    <div class="relative flex flex-col grow w-full">
       <main id="main-content" class="grow">
-        
+        <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+          
   
   
     
@@ -569,7 +573,7 @@
 
 <section class="mb-10">
   <p class="text-xs uppercase tracking-widest text-neutral-400 mb-1">Products</p>
-  <h2 class="text-lg font-medium mb-1">Add-on boards</h2>
+  <h2 class="text-lg font-medium mb-1">Ikai eBoards</h2>
   <p class="text-sm text-neutral-500 mb-4">Hardware you can drop into your project today.</p>
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
     
@@ -630,8 +634,8 @@
             dark:border-neutral-700 rounded-xl p-4 hover:border-neutral-400 transition-colors">
     <span class="text-2xl text-neutral-400">⚙</span>
     <div class="flex-1">
-      <p class="text-sm font-medium mb-0.5">DAC prototype</p>
-      <p class="text-xs text-neutral-500">Schematic done, routing in progress.</p>
+      <p class="text-sm font-medium mb-0.5">Ethernet</p>
+      <p class="text-xs text-neutral-500">Research in progress.</p>
     </div>
     <span class="text-neutral-400 text-sm">→</span>
   </a>
@@ -640,6 +644,7 @@
 
   
 
+        </div>
         
 
 
