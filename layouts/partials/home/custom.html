@@ -6,14 +6,18 @@
     Compact add-on boards and open-source projects for makers and hobbyists.
   </p>
   <div class="flex gap-3 justify-center">
-    <a href="/eBoards/" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100
+    {{ with .Site.GetPage "/eBoards" }}
+    <a href="{{ .RelPermalink }}" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100
        text-white dark:text-neutral-900 rounded-lg text-sm">
       Browse products →
     </a>
-    <a href="/eBlogs/" class="px-4 py-2 border border-neutral-200
+    {{ end }}
+    {{ with .Site.GetPage "/eBlogs" }}
+    <a href="{{ .RelPermalink }}" class="px-4 py-2 border border-neutral-200
        dark:border-neutral-700 rounded-lg text-sm text-neutral-500">
       Read the blog
     </a>
+    {{ end }}
   </div>
 </div>
 
@@ -36,9 +40,11 @@
     {{ end }}
   </div>
   <div class="text-right mt-3">
-    <a href="/eBoards/" class="text-xs text-neutral-400 hover:text-neutral-700">
+    {{ with .Site.GetPage "/eBoards" }}
+    <a href="{{ .RelPermalink }}" class="text-xs text-neutral-400 hover:text-neutral-700">
       All products →
     </a>
+    {{ end }}
   </div>
 </section>
 <hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
@@ -88,9 +94,11 @@
   </a>
   {{ end }}
   <div class="text-right mt-3">
-    <a href="/eBlogs/" class="text-xs text-neutral-400 hover:text-neutral-700">
+    {{ with .Site.GetPage "/eBlogs" }}
+    <a href="{{ .RelPermalink }}" class="text-xs text-neutral-400 hover:text-neutral-700">
       All posts →
     </a>
+    {{ end }}
   </div>
 </section>
 <hr style="border: none; border-top: 1px solid rgba(128,128,128,0.15); margin: 2.5rem 0;">
