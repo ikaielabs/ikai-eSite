@@ -13,9 +13,9 @@ Reads boards from page frontmatter: `boards` (array of objects with id, title, t
       <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-sky-200/50 blur-2xl dark:bg-sky-500/10" aria-hidden="true"></div>
       <div class="relative flex items-center">
         <div class="min-w-0">
-          <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Annex Boards</h3>
+          <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Add-on Boards</h3>
           <p class="mt-2 text-slate-600 dark:text-slate-300">Compact add-on boards for makers and hobbyists.</p>
-          <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 dark:text-sky-300">Explore annex boards <span aria-hidden="true">→</span></span>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 dark:text-sky-300">Explore add-on boards <span aria-hidden="true">→</span></span>
         </div>
       </div>
     </button>
@@ -33,16 +33,16 @@ Reads boards from page frontmatter: `boards` (array of objects with id, title, t
   </div>
 
   <div id="annex" class="eboards-panel hidden">
-    <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 3rem);">
+    <div class="eboards-card-grid mx-auto grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 3rem);">
       {{ range $i, $p := $annex }}
-        <a href="{{ $p.RelPermalink }}" class="group flex flex-col overflow-hidden rounded-2xl bg-slate-900 p-3 shadow-2xl ring-1 ring-slate-700 transition duration-300 hover:-translate-y-2 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" style="aspect-ratio: 1 / 1; box-sizing: border-box; padding: 0.5rem; box-shadow: 0 20px 35px rgba(15, 23, 42, 0.35);">
+        <a href="{{ $p.RelPermalink }}" class="eboards-card group flex flex-col overflow-hidden rounded-2xl bg-slate-900 p-3 shadow-2xl ring-1 ring-slate-700 transition duration-300 hover:-translate-y-2 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" style="aspect-ratio: 1 / 1; box-sizing: border-box; padding: 0; box-shadow: 0 20px 35px rgba(15, 23, 42, 0.35);">
           <div class="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800" style="border-radius: 0.75rem;">
             {{ $imgPath := $p.Params.image }}
             {{ if $imgPath }}
               {{ with resources.Get $imgPath }}
-                <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 125%; height: 125%; border-radius: 0.75rem;" />
+                <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 100%; height: 100%; border-radius: 0.75rem;" />
               {{ else }}
-                <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 125%; height: 125%; border-radius: 0.75rem;" />
+                <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 100%; height: 100%; border-radius: 0.75rem;" />
               {{ end }}
             {{ else }}
               <div class="flex h-full w-full items-center justify-center p-6 text-center text-slate-700 dark:text-slate-200">
@@ -61,19 +61,19 @@ Reads boards from page frontmatter: `boards` (array of objects with id, title, t
   </div>
 
   <div id="other" class="eboards-panel hidden">
-    <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 3rem);">
+    <div class="eboards-card-grid mx-auto grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 3rem);">
       <div class="col-span-full mb-4">
         <button type="button" data-back class="px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 ring-1 ring-slate-200 dark:ring-slate-700">← Back</button>
       </div>
       {{ range $i, $p := $other }}
-        <a href="{{ $p.RelPermalink }}" class="group flex flex-col overflow-hidden rounded-2xl bg-slate-900 p-3 shadow-2xl ring-1 ring-slate-700 transition duration-300 hover:-translate-y-2 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" style="aspect-ratio: 1 / 1; box-sizing: border-box; padding: 0.5rem; box-shadow: 0 20px 35px rgba(15, 23, 42, 0.35);">
+        <a href="{{ $p.RelPermalink }}" class="eboards-card group flex flex-col overflow-hidden rounded-2xl bg-slate-900 p-3 shadow-2xl ring-1 ring-slate-700 transition duration-300 hover:-translate-y-2 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" style="aspect-ratio: 1 / 1; box-sizing: border-box; padding: 0; box-shadow: 0 20px 35px rgba(15, 23, 42, 0.35);">
           <div class="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800" style="border-radius: 0.75rem;">
             {{ $imgPath := $p.Params.image }}
             {{ if $imgPath }}
               {{ with resources.Get $imgPath }}
-                <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 125%; height: 125%; border-radius: 0.75rem;" />
+                <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 100%; height: 100%; border-radius: 0.75rem;" />
               {{ else }}
-                <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 125%; height: 125%; border-radius: 0.75rem;" />
+                <img src="{{ $imgPath }}" alt="{{ $p.Title }}" class="object-contain transition duration-300 group-hover:scale-105 nozoom" style="width: 100%; height: 100%; border-radius: 0.75rem;" />
               {{ end }}
             {{ else }}
               <div class="flex h-full w-full items-center justify-center p-6 text-center text-slate-700 dark:text-slate-200">

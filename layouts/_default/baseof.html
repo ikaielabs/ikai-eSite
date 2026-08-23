@@ -37,7 +37,9 @@
           {{- partial "scroll-to-top.html" . -}}
         {{ end }}
       </main>
-      {{- partial "footer.html" . -}}
+      <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+        {{- partial "footer.html" . -}}
+      </div>
       {{ if site.Params.enableSearch | default false }}
         {{- partial "search.html" . -}}
       {{ end }}

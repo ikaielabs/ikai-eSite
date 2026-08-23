@@ -39,6 +39,55 @@ main h1 {
   text-wrap: balance;
 }
 
+.article-content {
+  width: 100%;
+  max-width: none !important;
+}
+
+#main-content article > section > div.min-w-0.min-h-0.max-w-prose {
+  flex: 1 1 0%;
+  width: 100%;
+  max-width: none;
+}
+
+#main-content article > section > div.min-w-0.min-h-0.max-w-fit {
+  flex: 1 1 0%;
+  width: 100%;
+  max-width: none;
+}
+
+.article-content p {
+  text-align: justify;
+}
+
+.eboards-content p {
+  text-align: justify;
+}
+
+.adc-hero-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .eboards-card-grid {
+    grid-template-columns: repeat(2, 300px);
+    justify-content: center;
+  }
+
+  .eboards-card {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .eboards-card-grid {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
 a,
 button {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
@@ -58,4 +107,21 @@ header a[href="/"].text-base {
 header .logo {
   max-height: 36px !important;
   max-width: 140px !important;
+}
+
+body > div.relative > .fixed.inset-x-0.z-100 {
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(115, 115, 115, 0.3);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+body > div.relative > .fixed.inset-x-0.z-100 > .relative.m-auto {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 30px;
+  padding-right: 30px;
 }

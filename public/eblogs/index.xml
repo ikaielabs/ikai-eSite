@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>eBlogs on Ikai eLabs</title>
-    <link>http://localhost:1313/eblogs/</link>
-    <description>Recent content in eBlogs on Ikai eLabs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>support@ikaielabs.com (Ikai eLabs)</managingEditor>
-    <webMaster>support@ikaielabs.com (Ikai eLabs)</webMaster>
-    <copyright>© 2026 Ikai eLabs</copyright>
-    <atom:link href="http://localhost:1313/eblogs/index.xml" rel="self" type="application/rss+xml" />
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>eBlogs on Ikainex Technologies</title><link>https://www.ikainex.com/eblogs/</link><description>Recent content in eBlogs on Ikainex Technologies</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>support@ikai.com (Ikainex)</managingEditor><webMaster>support@ikai.com (Ikainex)</webMaster><copyright>© 2026 Ikainex</copyright><atom:link href="https://www.ikainex.com/eblogs/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
