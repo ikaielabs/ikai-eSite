@@ -1,3 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Space+Grotesk:wght@400..700&display=swap');
+
+/* Modern, open typography used throughout the site. */
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* A quiet, artistic layer that keeps the interface light and uncluttered. */
+body {
+  background-image:
+    radial-gradient(circle at 8% 5%, rgba(56, 189, 248, 0.10), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(168, 85, 247, 0.07), transparent 26rem);
+  background-attachment: fixed;
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at 8% 5%, rgba(14, 165, 233, 0.16), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(139, 92, 246, 0.12), transparent 26rem);
+}
+
+main h1 {
+  text-wrap: balance;
+}
+
+a,
+button {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+}
+
 /* Navbar site title text */
 header a[href="/"].text-base {
   font-size: 1.4rem !important;
