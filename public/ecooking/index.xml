@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>eCooking Recipies on Ikai eLabs</title>
+    <title>eCooking Recipies on Ikainex Technologies</title>
     <link>http://localhost:1313/ecooking/</link>
-    <description>Recent content in eCooking Recipies on Ikai eLabs</description>
+    <description>Recent content in eCooking Recipies on Ikainex Technologies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>support@ikaielabs.com (Ikai eLabs)</managingEditor>
-    <webMaster>support@ikaielabs.com (Ikai eLabs)</webMaster>
-    <copyright>© 2026 Ikai eLabs</copyright>
+    <managingEditor>support@ikai.com (Ikainex)</managingEditor>
+    <webMaster>support@ikai.com (Ikainex)</webMaster>
+    <copyright>© 2026 Ikainex</copyright>
     <atom:link href="http://localhost:1313/ecooking/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>

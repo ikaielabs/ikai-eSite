@@ -1,3 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Space+Grotesk:wght@400..700&display=swap');
+
+/* Modern, open typography used throughout the site. */
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* A quiet, artistic layer that keeps the interface light and uncluttered. */
+body {
+  background-image:
+    radial-gradient(circle at 8% 5%, rgba(56, 189, 248, 0.10), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(168, 85, 247, 0.07), transparent 26rem);
+  background-attachment: fixed;
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at 8% 5%, rgba(14, 165, 233, 0.16), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(139, 92, 246, 0.12), transparent 26rem);
+}
+
+main h1 {
+  text-wrap: balance;
+}
+
+.article-content {
+  width: 100%;
+  max-width: none !important;
+}
+
+#main-content article > section > div.min-w-0.min-h-0.max-w-prose {
+  flex: 1 1 0%;
+  width: 100%;
+  max-width: none;
+}
+
+#main-content article > section > div.min-w-0.min-h-0.max-w-fit {
+  flex: 1 1 0%;
+  width: 100%;
+  max-width: none;
+}
+
+.article-content p {
+  text-align: justify;
+}
+
+.eboards-content p {
+  text-align: justify;
+}
+
+.adc-hero-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .eboards-card-grid {
+    grid-template-columns: repeat(2, 300px);
+    justify-content: center;
+  }
+
+  .eboards-card {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .eboards-card-grid {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+a,
+button {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+}
+
 /* Navbar site title text */
 header a[href="/"].text-base {
   font-size: 1.4rem !important;
@@ -8,4 +107,21 @@ header a[href="/"].text-base {
 header .logo {
   max-height: 36px !important;
   max-width: 140px !important;
+}
+
+body > div.relative > .fixed.inset-x-0.z-100 {
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(115, 115, 115, 0.3);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+body > div.relative > .fixed.inset-x-0.z-100 > .relative.m-auto {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 30px;
+  padding-right: 30px;
 }

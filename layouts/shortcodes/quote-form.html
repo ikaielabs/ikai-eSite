@@ -1,0 +1,83 @@
+<div class="quote-form not-prose mx-auto w-full max-w-3xl">
+  <form id="quote-request-form" class="space-y-6" novalidate>
+    <div>
+      <label for="quote-name" class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-100">Name</label>
+      <input id="quote-name" name="name" type="text" autocomplete="name" required class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100" />
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <label for="quote-phone" class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-100">Phone number</label>
+        <input id="quote-phone" name="phone" type="tel" autocomplete="tel" required class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100" />
+      </div>
+      <div>
+        <label for="quote-email" class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-100">Email</label>
+        <input id="quote-email" name="email" type="email" autocomplete="email" required class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100" />
+      </div>
+    </div>
+
+    <div>
+      <label for="quote-product" class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-100">Product</label>
+      <input id="quote-product" name="product" type="text" readonly class="w-full rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-3 text-base text-neutral-700 outline-none dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-200" />
+    </div>
+
+    <div>
+      <label for="quote-description" class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-100">Description</label>
+      <textarea id="quote-description" name="description" rows="6" required class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100"></textarea>
+    </div>
+
+    <button type="submit" class="rounded-lg bg-sky-600 px-5 py-3 text-base font-semibold text-white transition hover:bg-sky-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Prepare message</button>
+    <p id="quote-status" class="hidden text-sm text-neutral-600 dark:text-neutral-300" role="status"></p>
+    <div id="quote-actions" class="hidden flex flex-wrap gap-3">
+      <a id="quote-email-link" class="rounded-lg bg-slate-700 px-5 py-3 text-base font-semibold text-white hover:bg-slate-800" target="_blank" rel="noopener">Send by email</a>
+      <a id="quote-whatsapp-link" class="rounded-lg bg-green-600 px-5 py-3 text-base font-semibold text-white hover:bg-green-700" target="_blank" rel="noopener">Send by WhatsApp</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  (function () {
+    const form = document.getElementById('quote-request-form');
+    if (!form) return;
+
+    const query = new URLSearchParams(window.location.search);
+    const product = document.getElementById('quote-product');
+    const status = document.getElementById('quote-status');
+    const actions = document.getElementById('quote-actions');
+    const emailLink = document.getElementById('quote-email-link');
+    const whatsappLink = document.getElementById('quote-whatsapp-link');
+    const quoteEmail = '{{ site.Params.quoteEmail | default "support@ikai.com" }}';
+    const quoteWhatsApp = '{{ site.Params.quoteWhatsApp | default "" }}';
+
+    product.value = query.get('product') || 'General quote request';
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const values = new FormData(form);
+      const message = [
+        'Quote request',
+        'Product: ' + values.get('product'),
+        'Name: ' + values.get('name'),
+        'Phone: ' + values.get('phone'),
+        'Email: ' + values.get('email'),
+        'Description: ' + values.get('description')
+      ].join('\n');
+
+      emailLink.href = 'mailto:' + quoteEmail + '?subject=' + encodeURIComponent('Quote request: ' + values.get('product')) + '&body=' + encodeURIComponent(message);
+      if (quoteWhatsApp) {
+        whatsappLink.href = 'https://wa.me/' + quoteWhatsApp.replace(/[^0-9]/g, '') + '?text=' + encodeURIComponent(message);
+        whatsappLink.classList.remove('hidden');
+      } else {
+        whatsappLink.classList.add('hidden');
+      }
+
+      actions.classList.remove('hidden');
+      status.textContent = quoteWhatsApp
+        ? 'Your message is ready. Send it by email and WhatsApp using the buttons below.'
+        : 'Your email message is ready. Add the WhatsApp number in params.toml to enable WhatsApp delivery.';
+      status.classList.remove('hidden');
+    });
+  })();
+</script>
