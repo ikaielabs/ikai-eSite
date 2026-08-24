@@ -92,190 +92,165 @@ The **Ikainex ADC** is a high-precision analog-to-digital converter expansion bo
 
 ## Technical Specifications
 
-> ⚠️ **Content check needed:** the table below currently lists wireless/BLE specs (Fanstel BM833A, nRF52811, Bluetooth) that don't match an ADC board. This looks carried over from a different product page — swap in the actual MCP3204 / board specs before publishing.
-
 <div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
 
 | Parameter | Specification |
 |---|---|
-| Wireless Module | Fanstel BM833A |
-| Controller / Transceiver IC | Nordic Semiconductor nRF52811 |
-| CPU | 64 MHz Arm Cortex-M4 |
-| Flash Memory | 192 KB |
-| RAM | 24 KB |
-| Operating Voltage | 3.3 V |
-| Supported Protocols | Bluetooth Low Energy, IEEE 802.15.4 |
-| Wireless Band | 2.4 GHz ISM |
-| Antenna | Integrated PCB antenna |
-| Board Dimensions | **[Replace with actual dimensions]** |
-| PCB Layers | 2 layers |
-| Connector Type | MikroBUS™ / Click-compatible headers |
-| Debug Interface | SWD |
-| Host Interface | UART / GPIO / SPI / I²C — **[verify actual implementation]** |
-| Logic Level | 3.3 V |
-| Status Indicators | Power / User-configurable LEDs |
-| User Input | User buttons |
-| Firmware Update | OTA / SWD — **[verify supported method]** |
-| Board Weight | Approximately 17 g |
+| Module Type | 4-Channel, 12-bit ADC |
+| ADC | MCP3204, 12-bit A/D converter with SPI interface |
+| Analog Inputs | 4 × single-ended channels |
+| Resolution | 12-bit |
+| Sampling Rate | Up to 100 kSPS |
+| Analog Front-End | 4 × operational amplifier channels |
+| Op-Amp | TLV9054IDR, 5 MHz rail-to-rail I/O operational amplifier |
+| Voltage Reference | MCP1541 precision voltage reference |
+| Reference Voltage | 3 selectable reference voltage options |
+| Interface | SPI |
+| Input Voltage | 3.3 V or 5 V |
+| Power Consumption |Low-power operation |
+| Board Size | 42.9 × 25.4 mm |
+| Primary Applications | Data acquisition, instrumentation, sensor interfacing, embedded systems, and industrial applications |
 
 </div>
 
 ## Pin Configuration
 
 The following table provides a starting point for documenting the exposed
-header signals. **Verify every signal against the final schematic and PCB
-before using this table as an electrical reference.**
-
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
-
-| Description | Pin Name |  | Description |
-|---:|---|---|---|
-| 1 | `3V3` | Power | Regulated 3.3 V supply input/output |
-| 2 | `GND` | Power | Ground reference |
-| 3 | `VUP` | Power | Upstream / input supply connection |
-| 4 | `RST` | Digital Input | Active-low reset signal |
-| 5 | `CS` | Digital I/O | Chip-select / configurable GPIO |
-| 6 | `P13` | GPIO | nRF52811 GPIO P0.13 |
-| 7 | `P14` | GPIO | nRF52811 GPIO P0.14 |
-| 8 | `P15` | GPIO | nRF52811 GPIO P0.15 |
-| 9 | `P16` | GPIO | nRF52811 GPIO P0.16 |
-| 10 | `P17` | GPIO | nRF52811 GPIO P0.17 |
-| 11 | `P18` | GPIO | nRF52811 GPIO P0.18 |
-| 12 | `P19` | GPIO | nRF52811 GPIO P0.19 |
-| 13 | `P20` | GPIO | nRF52811 GPIO P0.20 |
-| 14 | `P25` | GPIO | nRF52811 GPIO P0.25 |
-| 15 | `P27` | GPIO | nRF52811 GPIO P0.27 |
-| 16 | `P28` | GPIO / ADC | nRF52811 GPIO P0.28 |
-| 17 | `P29` | GPIO / ADC | nRF52811 GPIO P0.29 |
-| 18 | `P30` | GPIO / ADC | nRF52811 GPIO P0.30 |
-| 19 | `TX` | UART | UART transmit signal |
-| 20 | `RX` | UART | UART receive signal |
-| 21 | `INT` | Digital Output | Interrupt / event signal |
-| 22 | `CMD` | Digital I/O | Command / control interface |
-| 23 | `SWDIO` | Debug | Serial Wire Debug data |
-| 24 | `SWDCLK` | Debug | Serial Wire Debug clock |
-
-</div>
-
-> **⚠️ Logic-level warning:** The BM833A Click uses **3.3 V logic**. Do not
-> connect 5 V GPIO signals directly to the module unless the corresponding
-> interface has been specifically designed for 5 V tolerance or an appropriate
-> level shifter is used.
-
-## Hardware Architecture
-
-The BM833A Click is organized around the BM833A wireless module and its
-nRF52811 SoC. The board provides the supporting power, reset, programming,
-debugging, status, and host-interface circuitry required to integrate the
-wireless subsystem into a larger embedded design.
-
-The external supply is routed through the board's power section to provide
-the appropriate operating voltage for the wireless module and supporting
-components. Local bypass and decoupling capacitors should be positioned close
-to the module supply pins to minimize supply noise and transient voltage
-variations.
-
-High-speed digital signals are routed with short connections and appropriate
-ground references. Decoupling capacitors, pull-up/pull-down networks, series
-termination components, and other passive components should be selected and
-placed according to the final schematic and PCB layout requirements.
-
-## Functional Block Diagram
+header signals.
 
 <div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 p-4">
 
 ```text
-                    +----------------------+
-                    |   External Supply    |
-                    |     VUP / 3.3 V      |
-                    +----------+-----------+
-                               |
-                               v
-                    +----------------------+
-                    |   Power Regulation   |
-                    |   + Decoupling       |
-                    +----------+-----------+
-                               |
-                               v
-+----------------+     +----------------------+
-| Host MCU /     |<--->|      BM833A         |
-| Embedded Host  |     | Wireless Module     |
-+-------+--------+     +----------+-----------+
-        |                         |
-        | UART / SPI / I2C / GPIO |
-        |                         |
-        v                         v
-+---------------+        +----------------------+
-| Control /     |        | nRF52811 SoC        |
-| Data Signals  |        | 64 MHz Cortex-M4     |
-+---------------+        +----------+-----------+
-                                    |
-                                    v
-                         +----------------------+
-                         | 2.4 GHz Wireless     |
-                         | BLE / IEEE 802.15.4  |
-                         +----------+-----------+
-                                    |
-                                    v
-                         +----------------------+
-                         | Integrated PCB       |
-                         | Antenna               |
-                         +----------------------+
+                            Pin Header
+                       ┌─────────────────┐
+                   1   │ NC          NC  │ 20
+                   2   │ NC          NC  │ 19
+                   3   │ NC          NC  │ 18
+                   4   │ NC          NC  │ 17
+  SPI chip select  5   │ CS          NC  │ 16
+        SPI clock  6   │ SCK         NC  │ 15
+     SPI Data Out  7   │ SDO         NC  │ 14
+      SPI Data IN  8   │ SDI         NC  │ 13
+     Power Supply  9   │ 3.3V        5V  │ 12  Power Supply
+           Ground 10   │ GND        GND  │ 11  Ground
+                       └─────────────────┘
 ```
+</div>
+
+## Board Configuration & Indicators
+
+| Label   | Name      | Type   | Default | Description                                                                 |
+| ------- | --------- | ------ | ------- | --------------------------------------------------------------------------- |
+| **LD1** | PWR       | LED    | —       | Power indicator. Turns on when the board is powered.                        |
+| **J1**  | REFERENCE | Jumper | Left    | Selects the ADC reference voltage: **VCC** (Left) or **4.096 V** (Right).   |
+| **J2**  | PWR SEL   | Jumper | Left    | Selects the board's power/logic level: **3.3 V** (Left) or **5 V** (Right). |
+
+## ADC Electrical Characteristics
+
+| Parameter             | Min | Typ. | Max | Unit |
+| --------------------- | --: | ---: | --: | ---- |
+| Supply Voltage        | 3.3 |    — | 5.0 | V    |
+| Analog Supply Voltage | 2.7 |    — | 5.5 | V    |
+| Sampling Rate         |  50 |    — | 100 | kSPS |
+| ADC Resolution        |   — |    — |  12 | bits |
+
+## Software Support
+
+Software examples are available for **STM32F446RE** and **Arduino** platforms.
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+
+### STM32F446RE
+
+Example firmware demonstrating SPI communication and ADC data acquisition using the STM32F446RE.
+
+**Interface:** SPI  
+**Language:** C
+
+[View on GitHub →](https://github.com/ikainex/ikainex-aob-sdk/tree/main/mcu-sdk/samples/adc_annex/STM32F446RE-Nucleo)
 
 </div>
 
-## Signal Integrity & Filtering
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
 
-The wireless module is sensitive to supply and RF noise, making appropriate
-PCB layout and power decoupling important for reliable operation.
+### Arduino
 
-Power traces should be kept sufficiently short and supported by a continuous
-ground reference wherever possible. Decoupling capacitors should be located
-close to the associated power pins rather than being placed far away on the
-board.
+Example sketches demonstrating SPI communication and basic ADC operation with Arduino.
 
-Digital interfaces should be routed with appropriate consideration for trace
-length, return paths, impedance, and switching noise. Where required, optional
-series resistors or filtering components can be populated to reduce ringing
-and electromagnetic interference.
+**Interface:** SPI  
+**Language:** C++
 
-The antenna area should remain free from unnecessary copper, routing, and
-metallic objects according to the module manufacturer's recommended PCB layout
-guidelines.
-
-## Programming & Debugging
-
-Firmware can be loaded and debugged through the exposed **SWD interface**.
-The SWD connection provides access to the nRF52811 programming and debugging
-interface and can be used during firmware development, production testing,
-and board bring-up.
-
-Typical debugging connections are:
-
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
-
-| Debug Signal | Function                  |
-| ------------ | ------------------------- |
-| `SWDIO`      | Serial Wire Debug data    |
-| `SWDCLK`     | Serial Wire Debug clock   |
-| `GND`        | Debugger ground reference |
-| `3V3`        | Target voltage reference  |
-| `RST`        | Optional target reset     |
+[View on GitHub →](https://github.com/ikainex/ikainex-aob-sdk/tree/main/arduino-libs/AdcAnnex)
 
 </div>
 
-## Design & Project Files
+</div>
 
-The following project files should be maintained together with the hardware
-design and released with each production revision.
+## Tutorials & Videos
+
+Tutorial videos are currently being prepared and will be added to this page as they become available.
+
+<div class="rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 p-8 text-center my-6">
+
+### 🎥 Video Tutorials — Coming Soon
+
+We are preparing step-by-step tutorials covering:
+
+**Hardware Setup** · **SPI Configuration** · **STM32F446RE** · **Arduino** · **ADC Data Acquisition**
+
+Videos will be published here soon.
+
+</div>
+
+## Hardware Resources
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
 
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    TLV9054IDR Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the TLV9054 quad rail-to-rail input/output operational amplifier, including electrical characteristics, specifications, pin configuration, applications, and device information.
+  </p>
+  <a href="/downloads/documents/datasheets/TLV9054-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
+
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    MCP1541 Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the MCP1541 precision voltage reference, including reference-voltage specifications, electrical characteristics, pin configuration, and application information.
+  </p>
+  <a href="/downloads/documents/datasheets/MCP1541-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
+
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    MCP3204 Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the MCP3204 12-bit, 4-channel analog-to-digital converter with SPI interface, including electrical characteristics, timing specifications, pin configuration, and application information.
+  </p>
+  <a href="/downloads/documents/datasheets/MCP3204-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
+
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Schematics</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Complete electrical schematic, including power, wireless module, connectors, programming/debugging, status indicators, and supporting circuitry.</p>
-<a href="/downloads/bm833a-click-schematic.pdf" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Schematics (PDF) →</a>
+<a href="/downloads/adc-aob-schematic.pdf" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Schematics (PDF) →</a>
 </div>
 
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
@@ -287,13 +262,13 @@ design and released with each production revision.
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Bill of Materials</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Manufacturer part numbers, component values, packages, quantities, approved alternatives, and sourcing information.</p>
-<a href="/downloads/bm833a-click-bom.csv" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Bill of Materials (CSV) →</a>
+<a href="/downloads/adc-aob-bom.csv" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Bill of Materials (CSV) →</a>
 </div>
 
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">3D STEP Model</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">STEP model for mechanical integration, enclosure design, clearance checks, and CAD assembly work.</p>
-<a href="/downloads/bm833a-click.step" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download 3D STEP Model →</a>
+<a href="/downloads/adc-aob.step" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download 3D STEP Model →</a>
 </div>
 
 </div>
@@ -313,20 +288,6 @@ before processing your order.
 Request a quote for the ADC Add-on Board
 </a>
 </p>
-
-[View Hardware Repository on GitHub](https://github.com/YOUR-USERNAME/bm833a-click-hardware) — the repository contains the latest schematic source files, PCB layout, library files, manufacturing outputs, documentation, and revision history.
-
-## Revision History
-
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
-
-| Revision | Date       | Description                    |
-| -------- | ---------- | ------------------------------ |
-| `v0.1`   | 2026-08-17 | Initial hardware documentation |
-| `v0.2`   | **[Date]** | **[Describe changes]**         |
-| `v1.0`   | **[Date]** | **[Production release]**       |
-
-</div>
 
 ## Notes
 

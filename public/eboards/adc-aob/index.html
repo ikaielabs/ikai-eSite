@@ -233,7 +233,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "1343"
+    "wordCount": "932"
   }]
   </script>
 
@@ -659,13 +659,21 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#technical-specifications">Technical Specifications</a></li>
     <li><a href="#pin-configuration">Pin Configuration</a></li>
-    <li><a href="#hardware-architecture">Hardware Architecture</a></li>
-    <li><a href="#functional-block-diagram">Functional Block Diagram</a></li>
-    <li><a href="#signal-integrity--filtering">Signal Integrity &amp; Filtering</a></li>
-    <li><a href="#programming--debugging">Programming &amp; Debugging</a></li>
-    <li><a href="#design--project-files">Design &amp; Project Files</a></li>
+    <li><a href="#board-configuration--indicators">Board Configuration &amp; Indicators</a></li>
+    <li><a href="#adc-electrical-characteristics">ADC Electrical Characteristics</a></li>
+    <li><a href="#software-support">Software Support</a>
+      <ul>
+        <li><a href="#stm32f446re">STM32F446RE</a></li>
+        <li><a href="#arduino">Arduino</a></li>
+      </ul>
+    </li>
+    <li><a href="#tutorials--videos">Tutorials &amp; Videos</a>
+      <ul>
+        <li><a href="#-video-tutorials--coming-soon">🎥 Video Tutorials — Coming Soon</a></li>
+      </ul>
+    </li>
+    <li><a href="#hardware-resources">Hardware Resources</a></li>
     <li><a href="#how-to-order">How to Order</a></li>
-    <li><a href="#revision-history">Revision History</a></li>
     <li><a href="#notes">Notes</a></li>
   </ul>
 </nav>
@@ -683,13 +691,21 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#technical-specifications">Technical Specifications</a></li>
     <li><a href="#pin-configuration">Pin Configuration</a></li>
-    <li><a href="#hardware-architecture">Hardware Architecture</a></li>
-    <li><a href="#functional-block-diagram">Functional Block Diagram</a></li>
-    <li><a href="#signal-integrity--filtering">Signal Integrity &amp; Filtering</a></li>
-    <li><a href="#programming--debugging">Programming &amp; Debugging</a></li>
-    <li><a href="#design--project-files">Design &amp; Project Files</a></li>
+    <li><a href="#board-configuration--indicators">Board Configuration &amp; Indicators</a></li>
+    <li><a href="#adc-electrical-characteristics">ADC Electrical Characteristics</a></li>
+    <li><a href="#software-support">Software Support</a>
+      <ul>
+        <li><a href="#stm32f446re">STM32F446RE</a></li>
+        <li><a href="#arduino">Arduino</a></li>
+      </ul>
+    </li>
+    <li><a href="#tutorials--videos">Tutorials &amp; Videos</a>
+      <ul>
+        <li><a href="#-video-tutorials--coming-soon">🎥 Video Tutorials — Coming Soon</a></li>
+      </ul>
+    </li>
+    <li><a href="#hardware-resources">Hardware Resources</a></li>
     <li><a href="#how-to-order">How to Order</a></li>
-    <li><a href="#revision-history">Revision History</a></li>
     <li><a href="#notes">Notes</a></li>
   </ul>
 </nav>
@@ -882,8 +898,7 @@ The Ikainex ADC add-on board is designed for precision analog-to-digital convers
     </span>
     
 </h2>
-<blockquote><p>⚠️ <strong>Content check needed:</strong> the table below currently lists wireless/BLE specs (Fanstel BM833A, nRF52811, Bluetooth) that don&rsquo;t match an ADC board. This looks carried over from a different product page — swap in the actual MCP3204 / board specs before publishing.</p>
-</blockquote><div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
+<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
 <table>
   <thead>
       <tr>
@@ -893,80 +908,60 @@ The Ikainex ADC add-on board is designed for precision analog-to-digital convers
   </thead>
   <tbody>
       <tr>
-          <td>Wireless Module</td>
-          <td>Fanstel BM833A</td>
+          <td>Module Type</td>
+          <td>4-Channel, 12-bit ADC</td>
       </tr>
       <tr>
-          <td>Controller / Transceiver IC</td>
-          <td>Nordic Semiconductor nRF52811</td>
+          <td>ADC</td>
+          <td>MCP3204, 12-bit A/D converter with SPI interface</td>
       </tr>
       <tr>
-          <td>CPU</td>
-          <td>64 MHz Arm Cortex-M4</td>
+          <td>Analog Inputs</td>
+          <td>4 × single-ended channels</td>
       </tr>
       <tr>
-          <td>Flash Memory</td>
-          <td>192 KB</td>
+          <td>Resolution</td>
+          <td>12-bit</td>
       </tr>
       <tr>
-          <td>RAM</td>
-          <td>24 KB</td>
+          <td>Sampling Rate</td>
+          <td>Up to 100 kSPS</td>
       </tr>
       <tr>
-          <td>Operating Voltage</td>
-          <td>3.3 V</td>
+          <td>Analog Front-End</td>
+          <td>4 × operational amplifier channels</td>
       </tr>
       <tr>
-          <td>Supported Protocols</td>
-          <td>Bluetooth Low Energy, IEEE 802.15.4</td>
+          <td>Op-Amp</td>
+          <td>TLV9054IDR, 5 MHz rail-to-rail I/O operational amplifier</td>
       </tr>
       <tr>
-          <td>Wireless Band</td>
-          <td>2.4 GHz ISM</td>
+          <td>Voltage Reference</td>
+          <td>MCP1541 precision voltage reference</td>
       </tr>
       <tr>
-          <td>Antenna</td>
-          <td>Integrated PCB antenna</td>
+          <td>Reference Voltage</td>
+          <td>3 selectable reference voltage options</td>
       </tr>
       <tr>
-          <td>Board Dimensions</td>
-          <td><strong>[Replace with actual dimensions]</strong></td>
+          <td>Interface</td>
+          <td>SPI</td>
       </tr>
       <tr>
-          <td>PCB Layers</td>
-          <td>2 layers</td>
+          <td>Input Voltage</td>
+          <td>3.3 V or 5 V</td>
       </tr>
       <tr>
-          <td>Connector Type</td>
-          <td>MikroBUS™ / Click-compatible headers</td>
+          <td>Power Consumption</td>
+          <td>Low-power operation</td>
       </tr>
       <tr>
-          <td>Debug Interface</td>
-          <td>SWD</td>
+          <td>Board Size</td>
+          <td>42.9 × 25.4 mm</td>
       </tr>
       <tr>
-          <td>Host Interface</td>
-          <td>UART / GPIO / SPI / I²C — <strong>[verify actual implementation]</strong></td>
-      </tr>
-      <tr>
-          <td>Logic Level</td>
-          <td>3.3 V</td>
-      </tr>
-      <tr>
-          <td>Status Indicators</td>
-          <td>Power / User-configurable LEDs</td>
-      </tr>
-      <tr>
-          <td>User Input</td>
-          <td>User buttons</td>
-      </tr>
-      <tr>
-          <td>Firmware Update</td>
-          <td>OTA / SWD — <strong>[verify supported method]</strong></td>
-      </tr>
-      <tr>
-          <td>Board Weight</td>
-          <td>Approximately 17 g</td>
+          <td>Primary Applications</td>
+          <td>Data acquisition, instrumentation, sensor interfacing, embedded systems, and industrial applications</td>
       </tr>
   </tbody>
 </table>
@@ -982,328 +977,239 @@ The Ikainex ADC add-on board is designed for precision analog-to-digital convers
     
 </h2>
 <p>The following table provides a starting point for documenting the exposed
-header signals. <strong>Verify every signal against the final schematic and PCB
-before using this table as an electrical reference.</strong></p>
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
+header signals.</p>
+<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 p-4">
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                            Pin Header
+</span></span><span class="line"><span class="cl">                       ┌─────────────────┐
+</span></span><span class="line"><span class="cl">                   1   │ NC          NC  │ 20
+</span></span><span class="line"><span class="cl">                   2   │ NC          NC  │ 19
+</span></span><span class="line"><span class="cl">                   3   │ NC          NC  │ 18
+</span></span><span class="line"><span class="cl">                   4   │ NC          NC  │ 17
+</span></span><span class="line"><span class="cl">  SPI chip select  5   │ CS          NC  │ 16
+</span></span><span class="line"><span class="cl">        SPI clock  6   │ SCK         NC  │ 15
+</span></span><span class="line"><span class="cl">     SPI Data Out  7   │ SDO         NC  │ 14
+</span></span><span class="line"><span class="cl">      SPI Data IN  8   │ SDI         NC  │ 13
+</span></span><span class="line"><span class="cl">     Power Supply  9   │ 3.3V        5V  │ 12  Power Supply
+</span></span><span class="line"><span class="cl">           Ground 10   │ GND        GND  │ 11  Ground
+</span></span><span class="line"><span class="cl">                       └─────────────────┘</span></span></code></pre></div></div>
+</div>
+
+<h2 class="relative group">Board Configuration &amp; Indicators
+    <div id="board-configuration--indicators" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#board-configuration--indicators" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
 <table>
   <thead>
       <tr>
-          <th style="text-align: right">Description</th>
-          <th>Pin Name</th>
-          <th></th>
+          <th>Label</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
           <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: right">1</td>
-          <td><code>3V3</code></td>
-          <td>Power</td>
-          <td>Regulated 3.3 V supply input/output</td>
+          <td><strong>LD1</strong></td>
+          <td>PWR</td>
+          <td>LED</td>
+          <td>—</td>
+          <td>Power indicator. Turns on when the board is powered.</td>
       </tr>
       <tr>
-          <td style="text-align: right">2</td>
-          <td><code>GND</code></td>
-          <td>Power</td>
-          <td>Ground reference</td>
+          <td><strong>J1</strong></td>
+          <td>REFERENCE</td>
+          <td>Jumper</td>
+          <td>Left</td>
+          <td>Selects the ADC reference voltage: <strong>VCC</strong> (Left) or <strong>4.096 V</strong> (Right).</td>
       </tr>
       <tr>
-          <td style="text-align: right">3</td>
-          <td><code>VUP</code></td>
-          <td>Power</td>
-          <td>Upstream / input supply connection</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">4</td>
-          <td><code>RST</code></td>
-          <td>Digital Input</td>
-          <td>Active-low reset signal</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">5</td>
-          <td><code>CS</code></td>
-          <td>Digital I/O</td>
-          <td>Chip-select / configurable GPIO</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">6</td>
-          <td><code>P13</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.13</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">7</td>
-          <td><code>P14</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.14</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">8</td>
-          <td><code>P15</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.15</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">9</td>
-          <td><code>P16</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.16</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">10</td>
-          <td><code>P17</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.17</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">11</td>
-          <td><code>P18</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.18</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">12</td>
-          <td><code>P19</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.19</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">13</td>
-          <td><code>P20</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.20</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">14</td>
-          <td><code>P25</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.25</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">15</td>
-          <td><code>P27</code></td>
-          <td>GPIO</td>
-          <td>nRF52811 GPIO P0.27</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">16</td>
-          <td><code>P28</code></td>
-          <td>GPIO / ADC</td>
-          <td>nRF52811 GPIO P0.28</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">17</td>
-          <td><code>P29</code></td>
-          <td>GPIO / ADC</td>
-          <td>nRF52811 GPIO P0.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">18</td>
-          <td><code>P30</code></td>
-          <td>GPIO / ADC</td>
-          <td>nRF52811 GPIO P0.30</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">19</td>
-          <td><code>TX</code></td>
-          <td>UART</td>
-          <td>UART transmit signal</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">20</td>
-          <td><code>RX</code></td>
-          <td>UART</td>
-          <td>UART receive signal</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">21</td>
-          <td><code>INT</code></td>
-          <td>Digital Output</td>
-          <td>Interrupt / event signal</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">22</td>
-          <td><code>CMD</code></td>
-          <td>Digital I/O</td>
-          <td>Command / control interface</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">23</td>
-          <td><code>SWDIO</code></td>
-          <td>Debug</td>
-          <td>Serial Wire Debug data</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">24</td>
-          <td><code>SWDCLK</code></td>
-          <td>Debug</td>
-          <td>Serial Wire Debug clock</td>
+          <td><strong>J2</strong></td>
+          <td>PWR SEL</td>
+          <td>Jumper</td>
+          <td>Left</td>
+          <td>Selects the board&rsquo;s power/logic level: <strong>3.3 V</strong> (Left) or <strong>5 V</strong> (Right).</td>
       </tr>
   </tbody>
 </table>
-</div>
-<blockquote><p><strong>⚠️ Logic-level warning:</strong> The BM833A Click uses <strong>3.3 V logic</strong>. Do not
-connect 5 V GPIO signals directly to the module unless the corresponding
-interface has been specifically designed for 5 V tolerance or an appropriate
-level shifter is used.</p>
-</blockquote>
-<h2 class="relative group">Hardware Architecture
-    <div id="hardware-architecture" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware-architecture" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>The BM833A Click is organized around the BM833A wireless module and its
-nRF52811 SoC. The board provides the supporting power, reset, programming,
-debugging, status, and host-interface circuitry required to integrate the
-wireless subsystem into a larger embedded design.</p>
-<p>The external supply is routed through the board&rsquo;s power section to provide
-the appropriate operating voltage for the wireless module and supporting
-components. Local bypass and decoupling capacitors should be positioned close
-to the module supply pins to minimize supply noise and transient voltage
-variations.</p>
-<p>High-speed digital signals are routed with short connections and appropriate
-ground references. Decoupling capacitors, pull-up/pull-down networks, series
-termination components, and other passive components should be selected and
-placed according to the final schematic and PCB layout requirements.</p>
 
-<h2 class="relative group">Functional Block Diagram
-    <div id="functional-block-diagram" class="anchor"></div>
+<h2 class="relative group">ADC Electrical Characteristics
+    <div id="adc-electrical-characteristics" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#functional-block-diagram" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#adc-electrical-characteristics" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 p-4">
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    +----------------------+
-</span></span><span class="line"><span class="cl">                    |   External Supply    |
-</span></span><span class="line"><span class="cl">                    |     VUP / 3.3 V      |
-</span></span><span class="line"><span class="cl">                    +----------+-----------+
-</span></span><span class="line"><span class="cl">                               |
-</span></span><span class="line"><span class="cl">                               v
-</span></span><span class="line"><span class="cl">                    +----------------------+
-</span></span><span class="line"><span class="cl">                    |   Power Regulation   |
-</span></span><span class="line"><span class="cl">                    |   + Decoupling       |
-</span></span><span class="line"><span class="cl">                    +----------+-----------+
-</span></span><span class="line"><span class="cl">                               |
-</span></span><span class="line"><span class="cl">                               v
-</span></span><span class="line"><span class="cl">+----------------+     +----------------------+
-</span></span><span class="line"><span class="cl">| Host MCU /     |&lt;---&gt;|      BM833A         |
-</span></span><span class="line"><span class="cl">| Embedded Host  |     | Wireless Module     |
-</span></span><span class="line"><span class="cl">+-------+--------+     +----------+-----------+
-</span></span><span class="line"><span class="cl">        |                         |
-</span></span><span class="line"><span class="cl">        | UART / SPI / I2C / GPIO |
-</span></span><span class="line"><span class="cl">        |                         |
-</span></span><span class="line"><span class="cl">        v                         v
-</span></span><span class="line"><span class="cl">+---------------+        +----------------------+
-</span></span><span class="line"><span class="cl">| Control /     |        | nRF52811 SoC        |
-</span></span><span class="line"><span class="cl">| Data Signals  |        | 64 MHz Cortex-M4     |
-</span></span><span class="line"><span class="cl">+---------------+        +----------+-----------+
-</span></span><span class="line"><span class="cl">                                    |
-</span></span><span class="line"><span class="cl">                                    v
-</span></span><span class="line"><span class="cl">                         +----------------------+
-</span></span><span class="line"><span class="cl">                         | 2.4 GHz Wireless     |
-</span></span><span class="line"><span class="cl">                         | BLE / IEEE 802.15.4  |
-</span></span><span class="line"><span class="cl">                         +----------+-----------+
-</span></span><span class="line"><span class="cl">                                    |
-</span></span><span class="line"><span class="cl">                                    v
-</span></span><span class="line"><span class="cl">                         +----------------------+
-</span></span><span class="line"><span class="cl">                         | Integrated PCB       |
-</span></span><span class="line"><span class="cl">                         | Antenna               |
-</span></span><span class="line"><span class="cl">                         +----------------------+</span></span></code></pre></div></div>
-</div>
-
-<h2 class="relative group">Signal Integrity &amp; Filtering
-    <div id="signal-integrity--filtering" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#signal-integrity--filtering" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>The wireless module is sensitive to supply and RF noise, making appropriate
-PCB layout and power decoupling important for reliable operation.</p>
-<p>Power traces should be kept sufficiently short and supported by a continuous
-ground reference wherever possible. Decoupling capacitors should be located
-close to the associated power pins rather than being placed far away on the
-board.</p>
-<p>Digital interfaces should be routed with appropriate consideration for trace
-length, return paths, impedance, and switching noise. Where required, optional
-series resistors or filtering components can be populated to reduce ringing
-and electromagnetic interference.</p>
-<p>The antenna area should remain free from unnecessary copper, routing, and
-metallic objects according to the module manufacturer&rsquo;s recommended PCB layout
-guidelines.</p>
-
-<h2 class="relative group">Programming &amp; Debugging
-    <div id="programming--debugging" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#programming--debugging" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>Firmware can be loaded and debugged through the exposed <strong>SWD interface</strong>.
-The SWD connection provides access to the nRF52811 programming and debugging
-interface and can be used during firmware development, production testing,
-and board bring-up.</p>
-<p>Typical debugging connections are:</p>
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
 <table>
   <thead>
       <tr>
-          <th>Debug Signal</th>
-          <th>Function</th>
+          <th>Parameter</th>
+          <th style="text-align: right">Min</th>
+          <th style="text-align: right">Typ.</th>
+          <th style="text-align: right">Max</th>
+          <th>Unit</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><code>SWDIO</code></td>
-          <td>Serial Wire Debug data</td>
+          <td>Supply Voltage</td>
+          <td style="text-align: right">3.3</td>
+          <td style="text-align: right">—</td>
+          <td style="text-align: right">5.0</td>
+          <td>V</td>
       </tr>
       <tr>
-          <td><code>SWDCLK</code></td>
-          <td>Serial Wire Debug clock</td>
+          <td>Analog Supply Voltage</td>
+          <td style="text-align: right">2.7</td>
+          <td style="text-align: right">—</td>
+          <td style="text-align: right">5.5</td>
+          <td>V</td>
       </tr>
       <tr>
-          <td><code>GND</code></td>
-          <td>Debugger ground reference</td>
+          <td>Sampling Rate</td>
+          <td style="text-align: right">50</td>
+          <td style="text-align: right">—</td>
+          <td style="text-align: right">100</td>
+          <td>kSPS</td>
       </tr>
       <tr>
-          <td><code>3V3</code></td>
-          <td>Target voltage reference</td>
-      </tr>
-      <tr>
-          <td><code>RST</code></td>
-          <td>Optional target reset</td>
+          <td>ADC Resolution</td>
+          <td style="text-align: right">—</td>
+          <td style="text-align: right">—</td>
+          <td style="text-align: right">12</td>
+          <td>bits</td>
       </tr>
   </tbody>
 </table>
-</div>
 
-<h2 class="relative group">Design &amp; Project Files
-    <div id="design--project-files" class="anchor"></div>
+<h2 class="relative group">Software Support
+    <div id="software-support" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#design--project-files" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#software-support" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>The following project files should be maintained together with the hardware
-design and released with each production revision.</p>
+<p>Software examples are available for <strong>STM32F446RE</strong> and <strong>Arduino</strong> platforms.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+
+<h3 class="relative group">STM32F446RE
+    <div id="stm32f446re" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#stm32f446re" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Example firmware demonstrating SPI communication and ADC data acquisition using the STM32F446RE.</p>
+<p><strong>Interface:</strong> SPI<br>
+<strong>Language:</strong> C</p>
+<p><a href="https://github.com/ikainex/ikainex-aob-sdk/tree/main/mcu-sdk/samples/adc_annex/STM32F446RE-Nucleo"  target="_blank" rel="noreferrer">View on GitHub →</a></p>
+</div>
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+
+<h3 class="relative group">Arduino
+    <div id="arduino" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#arduino" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Example sketches demonstrating SPI communication and basic ADC operation with Arduino.</p>
+<p><strong>Interface:</strong> SPI<br>
+<strong>Language:</strong> C++</p>
+<p><a href="https://github.com/ikainex/ikainex-aob-sdk/tree/main/arduino-libs/AdcAnnex"  target="_blank" rel="noreferrer">View on GitHub →</a></p>
+</div>
+</div>
+
+<h2 class="relative group">Tutorials &amp; Videos
+    <div id="tutorials--videos" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#tutorials--videos" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Tutorial videos are currently being prepared and will be added to this page as they become available.</p>
+<div class="rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 p-8 text-center my-6">
+
+<h3 class="relative group">🎥 Video Tutorials — Coming Soon
+    <div id="-video-tutorials--coming-soon" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#-video-tutorials--coming-soon" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>We are preparing step-by-step tutorials covering:</p>
+<p><strong>Hardware Setup</strong> · <strong>SPI Configuration</strong> · <strong>STM32F446RE</strong> · <strong>Arduino</strong> · <strong>ADC Data Acquisition</strong></p>
+<p>Videos will be published here soon.</p>
+</div>
+
+<h2 class="relative group">Hardware Resources
+    <div id="hardware-resources" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware-resources" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    TLV9054IDR Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the TLV9054 quad rail-to-rail input/output operational amplifier, including electrical characteristics, specifications, pin configuration, applications, and device information.
+  </p>
+  <a href="/downloads/documents/datasheets/TLV9054-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    MCP1541 Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the MCP1541 precision voltage reference, including reference-voltage specifications, electrical characteristics, pin configuration, and application information.
+  </p>
+  <a href="/downloads/documents/datasheets/MCP1541-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
+  <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+    MCP3204 Datasheet
+  </h3>
+  <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+    Datasheet for the MCP3204 12-bit, 4-channel analog-to-digital converter with SPI interface, including electrical characteristics, timing specifications, pin configuration, and application information.
+  </p>
+  <a href="/downloads/documents/datasheets/MCP3204-Datasheet.pdf"
+     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+    Download Datasheet (PDF) →
+  </a>
+</div>
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Schematics</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Complete electrical schematic, including power, wireless module, connectors, programming/debugging, status indicators, and supporting circuitry.</p>
-<a href="/downloads/bm833a-click-schematic.pdf" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Schematics (PDF) →</a>
+<a href="/downloads/adc-aob-schematic.pdf" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Schematics (PDF) →</a>
 </div>
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Gerber Files</h3>
@@ -1313,12 +1219,12 @@ design and released with each production revision.</p>
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Bill of Materials</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Manufacturer part numbers, component values, packages, quantities, approved alternatives, and sourcing information.</p>
-<a href="/downloads/bm833a-click-bom.csv" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Bill of Materials (CSV) →</a>
+<a href="/downloads/adc-aob-bom.csv" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Bill of Materials (CSV) →</a>
 </div>
 <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
 <h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">3D STEP Model</h3>
 <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">STEP model for mechanical integration, enclosure design, clearance checks, and CAD assembly work.</p>
-<a href="/downloads/bm833a-click.step" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download 3D STEP Model →</a>
+<a href="/downloads/adc-aob.step" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download 3D STEP Model →</a>
 </div>
 </div>
 
@@ -1344,45 +1250,6 @@ before processing your order.</p>
 Request a quote for the ADC Add-on Board
 </a>
 </p>
-<p><a href="https://github.com/YOUR-USERNAME/bm833a-click-hardware"  target="_blank" rel="noreferrer">View Hardware Repository on GitHub</a> — the repository contains the latest schematic source files, PCB layout, library files, manufacturing outputs, documentation, and revision history.</p>
-
-<h2 class="relative group">Revision History
-    <div id="revision-history" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#revision-history" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<div class="overflow-x-auto my-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
-<table>
-  <thead>
-      <tr>
-          <th>Revision</th>
-          <th>Date</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>v0.1</code></td>
-          <td>2026-08-17</td>
-          <td>Initial hardware documentation</td>
-      </tr>
-      <tr>
-          <td><code>v0.2</code></td>
-          <td><strong>[Date]</strong></td>
-          <td><strong>[Describe changes]</strong></td>
-      </tr>
-      <tr>
-          <td><code>v1.0</code></td>
-          <td><strong>[Date]</strong></td>
-          <td><strong>[Production release]</strong></td>
-      </tr>
-  </tbody>
-</table>
-</div>
 
 <h2 class="relative group">Notes
     <div id="notes" class="anchor"></div>
