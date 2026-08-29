@@ -1,35 +1,41 @@
 {{/* Hero */}}
-<div class="mb-12 text-center">
-  <h1 style="font-size: 2.5rem; font-weight: 500; margin-bottom: 0.75rem; margin-top: 2rem;">Ikainex Technologies</h1>
-  <p class="text-neutral-500 max-w-sm mx-auto leading-relaxed" style="margin-bottom: 2rem;">
-    Compact add-on boards and open-source projects for makers and hobbyists.
+<div class="home-hero mb-12 text-center">
+  {{ $logoBlack := resources.Get "img/logo/ikainex_brand_logo_black.svg" }}
+  {{ $logoWhite := resources.Get "img/logo/ikainex_brand_logo_white.svg" }}
+  <h1 class="home-hero-title" style="font-weight: 500; margin-bottom: 0.75rem; margin-top: 2rem;">
+    <img class="home-hero-logo home-hero-logo-light" src="{{ $logoBlack.RelPermalink }}" alt="Ikainex Technologies" />
+    <img class="home-hero-logo home-hero-logo-dark" src="{{ $logoWhite.RelPermalink }}" alt="Ikainex Technologies" />
+  </h1>
+  <p class="home-hero-copy text-neutral-500 max-w-sm mx-auto leading-relaxed" style="margin-bottom: 2rem;">
+    Development boards, embedded hardware, and practical engineering resources for makers and teams.
   </p>
-  <div class="flex gap-3 justify-center">
+  <div class="home-hero-actions flex gap-3 justify-center">
     {{ with .Site.GetPage "/eBoards" }}
-    <a href="{{ .RelPermalink }}" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100
+    <a href="{{ .RelPermalink }}" class="home-primary-action px-4 py-2 bg-neutral-900 dark:bg-neutral-100
        text-white dark:text-neutral-900 rounded-lg text-sm">
-      Browse products →
+      Explore boards →
     </a>
     {{ end }}
     {{ with .Site.GetPage "/eBlogs" }}
-    <a href="{{ .RelPermalink }}" class="px-4 py-2 border border-neutral-200
+    <a href="{{ .RelPermalink }}" class="home-secondary-action px-4 py-2 border border-neutral-200
        dark:border-neutral-700 rounded-lg text-sm text-neutral-500">
-      Read the blog
+      Start learning
     </a>
     {{ end }}
   </div>
 </div>
 
 {{/* Products */}}
-<section class="mb-10">
+<section class="home-products mb-10">
   <p class="text-xs uppercase tracking-widest text-neutral-400 mb-1">Products</p>
   <h2 class="text-lg font-medium mb-1">Ikainex eBoards</h2>
   <p class="text-sm text-neutral-500 mb-4">Hardware you can drop into your project today.</p>
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
     {{ range first 3 (where .Site.RegularPages "Section" "eBoards") }}
-    <a href="{{ .Permalink }}"
+     <a href="{{ .Permalink }}"
+       aria-label="View {{ .Title }} product"
        class="block border border-neutral-200 dark:border-neutral-700
-              rounded-xl p-4 hover:border-neutral-400 transition-colors">
+            home-product-card rounded-xl p-4 hover:border-neutral-400 transition-colors">
       <p class="text-sm font-medium mb-1">{{ .Title }}</p>
       <p class="text-xs text-neutral-400 mb-2">
         {{ .Params.mcu }} · {{ .Params.interface }} · {{ .Params.voltage }}

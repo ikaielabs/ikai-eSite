@@ -43,7 +43,7 @@ Request a quote
 </a>
 
 <p class="text-lg leading-8 text-neutral-600 dark:text-neutral-300 mb-6">
-The Ikainex ADC add-on board is designed for precision analog-to-digital conversion. Powered by Microchip's MCP3204 12-bit SAR ADC, it offers a 4-channel single-ended setup with a fast 100 ksps sampling rate and an SPI-compatible interface. Ideal for industrial monitoring, instrumentation, and remote data acquisition systems.
+The Ikainex&trade; ADC add-on board is designed for precision analog-to-digital conversion. Powered by Microchip's MCP3204 12-bit SAR ADC, it offers a 4-channel single-ended setup with a fast 100 ksps sampling rate and an SPI-compatible interface. Ideal for industrial monitoring, instrumentation, and remote data acquisition systems.
 </p>
 
 <!-- Quick Specs -->
@@ -75,7 +75,7 @@ The Ikainex ADC add-on board is designed for precision analog-to-digital convers
 
 <ul class="space-y-3 text-neutral-600 dark:text-neutral-300 leading-7">
 <li><strong class="text-neutral-900 dark:text-neutral-100">12-Bit 4-Channel ADC</strong> — Driven by the Microchip MCP3204, supporting up to four single-ended input channels (CH0–CH3).</li>
-<li><strong class="text-neutral-900 dark:text-neutral-100">Onboard Signal Buffering</strong> — Every analog input passes through a Microchip MCP6284 5MHz rail-to-rail op-amp for optimal signal conditioning before conversion.</li>
+<li><strong class="text-neutral-900 dark:text-neutral-100">Onboard Signal Buffering</strong> — Every analog input passes through a TI TLV9054IDR 5MHz rail-to-rail op-amp for optimal signal conditioning before conversion.</li>
 <li><strong class="text-neutral-900 dark:text-neutral-100">Flexible Reference Selection</strong> — Easily switch the reference voltage using the onboard REFERENCE jumper between VCC (3.3V/5V) or an ultra-stable 4.096V provided by the onboard Microchip MCP1541 voltage reference.</li>
 <li><strong class="text-neutral-900 dark:text-neutral-100">4-Wire SPI Communication</strong> — Supports standard SPI modes (0 and 3) at clock speeds up to 2 MHz, activated via a low CS line.</li>
 <li><strong class="text-neutral-900 dark:text-neutral-100">Dual Logic Voltage Support</strong> — Integrated PWR SEL jumper enables seamless operation with both 3.3V and 5V host microcontrollers.</li>
@@ -88,7 +88,7 @@ The Ikainex ADC add-on board is designed for precision analog-to-digital convers
 
 ## Overview
 
-The **Ikainex ADC** is a high-precision analog-to-digital converter expansion board powered by Microchip's MCP3204 12-bit, 4-channel A/D converter with a fast SPI serial interface. Designed for reliable signal conversion in industrial, instrumentation, and data acquisition applications, it combines flexible reference selection, integrated signal conditioning, and dual-voltage MCU compatibility.
+The Ikainex&trade; ADC is a high-precision analog-to-digital converter expansion board powered by Microchip's MCP3204 12-bit, 4-channel A/D converter with a fast SPI serial interface. Designed for reliable signal conversion in industrial, instrumentation, and data acquisition applications, it combines flexible reference selection, integrated signal conditioning, and dual-voltage MCU compatibility.
 
 ## Technical Specifications
 
@@ -253,24 +253,6 @@ Videos will be published here soon.
 <a href="/downloads/adc-aob-schematic.pdf" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Schematics (PDF) →</a>
 </div>
 
-<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
-<h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Gerber Files</h3>
-<p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Manufacturing package containing the PCB fabrication layers, solder mask, silkscreen, copper, drill files, and board outline.</p>
-<a href="/downloads/bm833a-click-gerbers.zip" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Gerber Files (ZIP) →</a>
-</div>
-
-<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
-<h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">Bill of Materials</h3>
-<p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">Manufacturer part numbers, component values, packages, quantities, approved alternatives, and sourcing information.</p>
-<a href="/downloads/adc-aob-bom.csv" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download Bill of Materials (CSV) →</a>
-</div>
-
-<div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
-<h3 class="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-1">3D STEP Model</h3>
-<p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">STEP model for mechanical integration, enclosure design, clearance checks, and CAD assembly work.</p>
-<a href="/downloads/adc-aob.step" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Download 3D STEP Model →</a>
-</div>
-
 </div>
 
 ## How to Order
@@ -288,16 +270,3 @@ before processing your order.
 Request a quote for the ADC Add-on Board
 </a>
 </p>
-
-## Notes
-
-* Replace all placeholder specifications with values from the final schematic
-  and datasheets.
-* Verify the pin mapping against the actual PCB revision before manufacturing.
-* Confirm the final board dimensions using the PCB mechanical drawing.
-* Confirm all voltage and signal-level requirements before connecting external
-  hardware.
-* Keep the RF antenna area clear according to the BM833A module layout
-  recommendations.
-* The design files linked above are placeholders and should be replaced with
-  the actual project artifacts before publishing the documentation.
